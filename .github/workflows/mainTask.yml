@@ -5,9 +5,9 @@ name: github follower - following compare
 
 on:
   push:
-    branches: [ "master" ] 
+    branches: [ "main" ] 
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
   schedule: # execute every 24 hours
     - cron: "* */24 * * *"
 
