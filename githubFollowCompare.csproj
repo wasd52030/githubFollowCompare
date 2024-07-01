@@ -7,11 +7,22 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
 		<Content Include="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-	</ItemGroup>
+	</ItemGroup> -->
+
+  <Target Name="check appsettings and copy" BeforeTargets="Build">
+    <ItemGroup>
+      <AppSettingsJsonFile Include="appsettings.json" />
+    </ItemGroup>
+    
+    <Error Condition="!Exists('@(AppSettingsJsonFile)')" Text="appsettings.json file is missing!" />
+    
+    <!-- Execute your actions if the file exists -->
+    <Exec Command="your_command_here" Condition="Exists('@(AppSettingsJsonFile)')" />
+  </Target>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
