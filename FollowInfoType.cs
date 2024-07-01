@@ -1,0 +1,5 @@
+enum FollowInfoType
+{
+    followers,
+    following
+}

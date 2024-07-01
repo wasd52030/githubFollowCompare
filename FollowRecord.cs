@@ -1,0 +1,1 @@
+record FollowRecord(string LoginAccount, int Id, string NodeId, string HtmlUrl);
