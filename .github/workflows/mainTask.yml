@@ -31,7 +31,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Update statistics for https://www.youtube.com/playlist?list=PLdx_s59BrvfXJXyoU5BHpUkZGmZL0g3Ip
+    - name: do main task
       env:
         GithubAPIKey: ${{ secrets.GithubAPIKey }}
         senderEmail: ${{ secrets.senderEmail }}
