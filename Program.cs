@@ -74,7 +74,7 @@ void MailNotify(Configure config, string targetAccount, IEnumerable<FollowRecord
         int SmtpPort = 587;
         var msg = new MailMessage
         {
-            From = new MailAddress(config.senderEmail),
+            From = new MailAddress(config.SenderEmail),
             Subject = $"[github - {targetAccount}] follower - following compare",
             Body = $"current time = {DateTime.Now}<br>{string.Join("<br>", diff)}",
             IsBodyHtml = true,
@@ -85,7 +85,7 @@ void MailNotify(Configure config, string targetAccount, IEnumerable<FollowRecord
         using (var mailClient = new SmtpClient(SmtpServer, SmtpPort))
         {
             mailClient.EnableSsl = true;
-            mailClient.Credentials = new NetworkCredential(config.senderEmail, config.senderTempPwd);
+            mailClient.Credentials = new NetworkCredential(config.SenderEmail, config.SenderTempPwd);
             mailClient.Send(msg);
         }
     }
@@ -99,8 +99,8 @@ async Task Invoke(Configure config, string targetAccount)
 {
     var watch = new Stopwatch();
     watch.Start();
-    var followers = await GetfollowInfo(FollowInfoType.followers, config.apiKey, targetAccount);
-    var followings = await GetfollowInfo(FollowInfoType.following, config.apiKey, targetAccount);
+    var followers = await GetfollowInfo(FollowInfoType.followers, config.ApiKey, targetAccount);
+    var followings = await GetfollowInfo(FollowInfoType.following, config.ApiKey, targetAccount);
 
     Console.WriteLine();
 
@@ -125,9 +125,9 @@ async Task Main()
 
     var config = new Configure()
     {
-        apiKey = Environment.GetEnvironmentVariable("GithubAPIKey") ?? configuration.GetValue<string>("GithubAPIKey")!,
-        senderEmail = Environment.GetEnvironmentVariable("senderEmail") ?? configuration.GetValue<string>("sender:email")!,
-        senderTempPwd = Environment.GetEnvironmentVariable("senderTempPwd") ?? configuration.GetValue<string>("sender:TempPwd")!,
+        ApiKey = Environment.GetEnvironmentVariable("GithubAPIKey") ?? configuration.GetValue<string>("GithubAPIKey")!,
+        SenderEmail = Environment.GetEnvironmentVariable("senderEmail") ?? configuration.GetValue<string>("sender:email")!,
+        SenderTempPwd = Environment.GetEnvironmentVariable("senderTempPwd") ?? configuration.GetValue<string>("sender:TempPwd")!,
         ToEmail = Environment.GetEnvironmentVariable("ToEmail") ?? configuration.GetValue<string>("to:email")!,
     };
 
