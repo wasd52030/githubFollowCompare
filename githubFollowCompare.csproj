@@ -18,7 +18,8 @@
       <AppSettingsJsonFile Include="appsettings.json" />
     </ItemGroup>
     
-    <Error Condition="!Exists('@(AppSettingsJsonFile)')" Text="appsettings.json file is missing!" />
+    <!-- <Error Condition="!Exists('@(AppSettingsJsonFile)')" Text="appsettings.json file is missing!" /> -->
+    <Message Text="appsettings.json does not exist, skipping command." Condition="!Exists('@(AppSettingsJsonFile)')" />
     
     <!-- Execute your actions if the file exists -->
     <Exec Command="your_command_here" Condition="Exists('@(AppSettingsJsonFile)')" />
