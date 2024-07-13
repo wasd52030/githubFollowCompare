@@ -141,7 +141,7 @@ async Task Main()
     getDefaultValue: () => "wasd52030");
 
     // collect command
-    var collectCommand = new Command(name: "collect", description: "初步下載統整播放清單中的語言")
+    var collectCommand = new Command(name: "collect", description: "統整github follwer與following的差別")
     {
         TargetAccountOption
     };
