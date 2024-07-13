@@ -72,7 +72,7 @@ void MailNotify(Configure config, string targetAccount, IEnumerable<FollowRecord
         var to = config.ToEmail;
         string SmtpServer = "smtp.gmail.com";
         int SmtpPort = 587;
-        var msg = new MailMessage
+        using var msg = new MailMessage
         {
             From = new MailAddress(config.SenderEmail),
             Subject = $"[github - {targetAccount}] follower - following compare",
