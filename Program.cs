@@ -110,7 +110,7 @@ async Task Invoke(Configure config, string targetAccount)
     {
         Console.WriteLine(r);
     }
-    MailNotify(config, targetAccount, diff);
+    // MailNotify(config, targetAccount, diff);
 
     watch.Stop();
     Console.WriteLine(watch.Elapsed);

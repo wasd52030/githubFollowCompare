@@ -39,4 +39,3 @@ jobs:
         ToEmail: ${{ secrets.ToEmail }}
       run: |
         dotnet /home/runner/work/githubFollowCompare/githubFollowCompare/bin/Release/net8.0/githubFollowCompare.dll collect --targetAccount wasd52030
-        dotnet /home/runner/work/githubFollowCompare/githubFollowCompare/bin/Release/net8.0/githubFollowCompare.dll collect --targetAccount lurwx52030
