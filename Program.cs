@@ -118,17 +118,28 @@ async Task Invoke(Configure config, string targetAccount)
 
 async Task Main()
 {
+    
+    // reference -> https://blog.darkthread.net/blog/appsetting-fallback-in-console-app/
     IConfiguration configuration = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-        .Build();
+                                       .AddEnvironmentVariables()
+                                       .SetBasePath(Directory.GetCurrentDirectory())
+                                       .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                                       .Build();
+
+    // var config = new Configure()
+    // {
+    //     ApiKey = Environment.GetEnvironmentVariable("GithubAPIKey") ?? configuration.GetValue<string>("GithubAPIKey")!,
+    //     SenderEmail = Environment.GetEnvironmentVariable("senderEmail") ?? configuration.GetValue<string>("sender:email")!,
+    //     SenderTempPwd = Environment.GetEnvironmentVariable("senderTempPwd") ?? configuration.GetValue<string>("sender:TempPwd")!,
+    //     ToEmail = Environment.GetEnvironmentVariable("ToEmail") ?? configuration.GetValue<string>("to:email")!,
+    // };
 
     var config = new Configure()
     {
-        ApiKey = Environment.GetEnvironmentVariable("GithubAPIKey") ?? configuration.GetValue<string>("GithubAPIKey")!,
-        SenderEmail = Environment.GetEnvironmentVariable("senderEmail") ?? configuration.GetValue<string>("sender:email")!,
-        SenderTempPwd = Environment.GetEnvironmentVariable("senderTempPwd") ?? configuration.GetValue<string>("sender:TempPwd")!,
-        ToEmail = Environment.GetEnvironmentVariable("ToEmail") ?? configuration.GetValue<string>("to:email")!,
+        ApiKey = configuration.GetValue<string>("GithubAPIKey")!,
+        SenderEmail = configuration.GetValue<string>("sender:email")!,
+        SenderTempPwd = configuration.GetValue<string>("sender:TempPwd")!,
+        ToEmail = configuration.GetValue<string>("to:email")!,
     };
 
 
