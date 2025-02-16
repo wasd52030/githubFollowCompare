@@ -118,7 +118,7 @@ async Task Invoke(Configure config, string targetAccount)
 
 async Task Main()
 {
-    
+
     // reference -> https://blog.darkthread.net/blog/appsetting-fallback-in-console-app/
     IConfiguration configuration = new ConfigurationBuilder()
                                        .AddEnvironmentVariables()
@@ -137,9 +137,9 @@ async Task Main()
     var config = new Configure()
     {
         ApiKey = configuration.GetValue<string>("GithubAPIKey")!,
-        SenderEmail = configuration.GetValue<string>("sender:email")!,
-        SenderTempPwd = configuration.GetValue<string>("sender:TempPwd")!,
-        ToEmail = configuration.GetValue<string>("to:email")!,
+        SenderEmail = configuration.GetValue<string>("senderEmail")!,
+        SenderTempPwd = configuration.GetValue<string>("senderTempPwd")!,
+        ToEmail = configuration.GetValue<string>("ToEmail")!,
     };
 
 
